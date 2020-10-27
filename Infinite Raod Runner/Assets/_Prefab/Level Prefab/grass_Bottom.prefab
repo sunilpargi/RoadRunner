@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8126698937698400291}
   - component: {fileID: 8126698937698400292}
+  - component: {fileID: 1967682703068922095}
   m_Layer: 0
   m_Name: grass_Bottom
   m_TagString: BottomNearGrass
@@ -82,3 +83,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1967682703068922095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126698937698400293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99ee4c4265c7e04cbf7b2785896e898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
