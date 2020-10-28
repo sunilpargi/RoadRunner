@@ -20,6 +20,15 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool player_Jumped;
 
+    public GameObject explosion;
+
+    private SpriteRenderer player_Renderer;
+    public Sprite TRex_Sprite, player_Sprite;
+
+    private bool TRex_Trigger;
+
+    private GameObject[] start_Effect;
+
     void Awake()
     {
         MakeInstance();
@@ -28,8 +37,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         anim = player.GetComponent<Animator>();
+
+        start_Effect = GameObject.FindGameObjectsWithTag(Mytag.STAR_EFFECT);
     }
-    // Update is called once per frame
+  
     void Update()
     {
         HandleChangeLine();
@@ -58,7 +69,7 @@ public class PlayerController : MonoBehaviour
             anim.Play(change_Line_Animation);
             transform.localPosition = second_PosOfPlayer;
 
-            //SoundManager.instance.PlayMoveLineSound();
+            SoundManager.instance.PlayMoveLineSound();
 
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
@@ -67,7 +78,7 @@ public class PlayerController : MonoBehaviour
             anim.Play(change_Line_Animation);
             transform.localPosition = first_PosOfPlayer;
 
-            //SoundManager.instance.PlayMoveLineSound();
+            SoundManager.instance.PlayMoveLineSound();
 
         }
 
@@ -82,8 +93,109 @@ public class PlayerController : MonoBehaviour
 
                 anim.Play(jump_Animation);
                 player_Jumped = true;
-                //SoundManager.instance.PlayJumpSound();
+                SoundManager.instance.PlayJumpSound();
             }
         }
+    }
+
+    void Die()
+    {
+        player_Died = true;
+        player.SetActive(false);
+        shadow.SetActive(false);
+
+        GamePlayController.instance.moveSpeed = 0f;
+        //GamePlayController.instance.GameOver();
+
+        SoundManager.instance.PlayDeadSound();
+        SoundManager.instance.PlayGameOverClip();
+    }
+
+    void DieWithObstacle(Collider2D target)
+    {
+
+        Die();
+
+        explosion.transform.position = target.transform.position;
+        explosion.SetActive(true);
+        target.gameObject.SetActive(false);
+
+        SoundManager.instance.PlayDeadSound();
+    }
+
+    IEnumerator TRexDuration()
+    {
+        yield return new WaitForSeconds(7f);
+
+        if (TRex_Trigger)
+        {
+            TRex_Trigger = false;
+
+            player_Renderer.sprite = player_Sprite;
+        }
+
+    }
+
+    void DestroyObstacle(Collider2D target)
+    {
+        explosion.transform.position = target.transform.position;
+        explosion.SetActive(false); // turn off the explosion if its already turned on
+        explosion.SetActive(true);
+
+        target.gameObject.SetActive(false);
+
+        SoundManager.instance.PlayDeadSound();
+
+    }
+
+    void OnTriggerEnter2D(Collider2D target)
+    {
+
+        if (target.tag == Mytag.OBSTACLE)
+        {
+
+            if (!TRex_Trigger)
+            {
+                DieWithObstacle(target);
+
+            }
+            else
+            {
+                DestroyObstacle(target);
+            }
+
+        }
+
+        if (target.tag == Mytag.T_REX)
+        {
+
+            TRex_Trigger = true;
+            player_Renderer.sprite = TRex_Sprite;
+            target.gameObject.SetActive(false);
+
+            SoundManager.instance.PlayPowerUpSound();
+
+            StartCoroutine(TRexDuration());
+
+        }
+
+        if (target.tag == Mytag.STAR)
+        {
+
+            for (int i = 0; i < start_Effect.Length; i++)
+            {
+                if (!start_Effect[i].activeInHierarchy)
+                {
+                    start_Effect[i].transform.position = target.transform.position;
+                    start_Effect[i].SetActive(true);
+                    break;
+                }
+            }
+
+            target.gameObject.SetActive(false);
+            SoundManager.instance.PlayCoinSound();
+            //GameplayController.instance.UpdateStarScore();
+        }
+
     }
 }

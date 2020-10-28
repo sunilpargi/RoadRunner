@@ -24,4 +24,9 @@ public class AnimationEvent : MonoBehaviour
 		}
 	}
 
+
+	void DeactivateExplosion()
+    {
+		gameObject.SetActive(false);
+    }
 }
