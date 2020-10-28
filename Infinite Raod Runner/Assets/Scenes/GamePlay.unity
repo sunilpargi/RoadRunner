@@ -357,6 +357,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   distance_Factor: 1
+  obstacles_Obj: {fileID: 189989782}
+  obstacle_List: []
+  obstacles_Is_Active: 0
 --- !u!4 &76888103
 Transform:
   m_ObjectHideFlags: 0
