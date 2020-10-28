@@ -42,20 +42,29 @@ public class GamePlayController : MonoBehaviour
     {
         if (gameJustStarted)
         {
-            if(moveSpeed < 12.0f)
+
+            if (!PlayerController.instance.player_Died)
             {
-                moveSpeed += Time.deltaTime * 5.0f;
-            }
-            else
-            {
-                moveSpeed = 12;
-                gameJustStarted = false;
+
+                if (moveSpeed < 12.0f)
+                {
+                    moveSpeed += Time.deltaTime * 5.0f;
+                }
+                else
+                {
+                    moveSpeed = 12;
+                    gameJustStarted = false;
+                }
             }
         }
 
-        Camera.main.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
+        if (!PlayerController.instance.player_Died)
+        {
+            Camera.main.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
 
-        UpdateScore();
+            UpdateScore();
+        }
+       
     }
 
     private void UpdateScore()
