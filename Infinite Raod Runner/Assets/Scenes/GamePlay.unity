@@ -157,7 +157,7 @@ Transform:
   - {fileID: 544010369}
   - {fileID: 703456281}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25772824
 GameObject:
@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &35158235
 RectTransform:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 64d8721bc2bc08d4686b4becd603781d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -648,6 +648,15 @@ MonoBehaviour:
   obstacles_Obj: {fileID: 189989782}
   obstacle_List: []
   obstacles_Is_Active: 0
+  score_Text: {fileID: 1251991815}
+  star_Score_Text: {fileID: 366700788}
+  pause_Panel: {fileID: 1858683125}
+  pause_Anim: {fileID: 1858683127}
+  gameOver_Panel: {fileID: 35158234}
+  gameOver_Anim: {fileID: 35158236}
+  final_Score_Text: {fileID: 522537228}
+  best_Score_Text: {fileID: 1788622006}
+  final_Star_Score_Text: {fileID: 488802519}
 --- !u!4 &76888103
 Transform:
   m_ObjectHideFlags: 0
@@ -660,7 +669,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &128846697
 PrefabInstance:
@@ -809,7 +818,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 162292342}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: HomeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &162292342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,7 +1319,7 @@ GameObject:
   - component: {fileID: 366700789}
   - component: {fileID: 366700788}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1533,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 418672664}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &418672664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,7 +1929,7 @@ RectTransform:
   - {fileID: 1858683126}
   - {fileID: 35158235}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2050,7 +2083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470888741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &470888741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4393,7 +4438,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 986585232}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: HomeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &986585232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6431,7 +6488,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1217710748
 GameObject:
@@ -6446,7 +6503,7 @@ GameObject:
   - component: {fileID: 1217710751}
   - component: {fileID: 1217710750}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Resume Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6513,7 +6570,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1217710751}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1217710751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6933,7 +7002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.5, y: -72.9}
+  m_AnchoredPosition: {x: 3.5, y: -72.899994}
   m_SizeDelta: {x: 92.959595, y: 79.93823}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251991815
@@ -7273,7 +7342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348985598
 GameObject:
@@ -7893,7 +7962,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1493482652}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 76888102}
+        m_TargetAssemblyTypeName: GamePlayController, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1493482652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9133,6 +9214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858683126}
   - component: {fileID: 1858683127}
+  - component: {fileID: 1858683128}
   m_Layer: 5
   m_Name: Pause Manu
   m_TagString: Untagged
@@ -9174,13 +9256,25 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 64d8721bc2bc08d4686b4becd603781d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1858683128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858683125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298388fe8e2a3374582c3e0bf3eb6779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1884466288
 GameObject:
   m_ObjectHideFlags: 0

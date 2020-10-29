@@ -29,4 +29,10 @@ public class AnimationEvent : MonoBehaviour
     {
 		gameObject.SetActive(false);
     }
+
+	void PausePanel()
+    {
+		Time.timeScale = 1;
+		gameObject.SetActive(false);
+    }
 }

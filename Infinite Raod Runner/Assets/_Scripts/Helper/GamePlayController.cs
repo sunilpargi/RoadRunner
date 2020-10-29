@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePlayController : MonoBehaviour
 {
@@ -19,9 +21,25 @@ public class GamePlayController : MonoBehaviour
     public bool obstacles_Is_Active;
 
     private string Coroutine_Name = "SpawnObstacles";
+
+    public Text score_Text;
+    public Text star_Score_Text;
+
+    private int star_Score_Count, score_Count;
+
+    public GameObject pause_Panel;
+    public Animator pause_Anim;
+
+    public GameObject gameOver_Panel;
+    public Animator gameOver_Anim;
+
+    public Text final_Score_Text, best_Score_Text, final_Star_Score_Text;
     void Awake()
     {
         MakeInstance();
+
+        //score_Text = GameObject.Find("ScoreText").GetComponent<Text>();
+        //star_Score_Text = GameObject.Find("StarText").GetComponent<Text>();
     }
 
     private void Start()
@@ -83,7 +101,11 @@ public class GamePlayController : MonoBehaviour
         distance_Move += Time.deltaTime * distance_Factor;
         int round = (int)Math.Round(distance_Move);
 
-        if(round > 30 && round < 60)
+        // COUNT AND SHOW THE SCORE
+        score_Count = (int)round; // save the score when the player dies
+        score_Text.text = round.ToString();
+
+        if (round > 30 && round < 60)
         {
             moveSpeed = 14f;
         }
@@ -139,5 +161,59 @@ public class GamePlayController : MonoBehaviour
 
             yield return new WaitForSeconds(0.6f);
         }
+    }
+
+    public void UpdateStarScore()
+    {
+        star_Score_Count++;
+        star_Score_Text.text = star_Score_Count.ToString();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pause_Panel.SetActive(true);
+        pause_Anim.Play("SlideIn");
+    }
+
+    public void ResumeGame()
+    {
+        pause_Anim.Play("SlideOut");
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Gameplay");
+    }
+
+    public void HomeButton()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        gameOver_Panel.SetActive(true);
+        gameOver_Anim.Play("SlideIn");
+
+        final_Score_Text.text = score_Count.ToString();
+        final_Star_Score_Text.text = star_Score_Count.ToString();
+
+
+        //checking the higest score 
+        if (GameManager.instance.score_Count < score_Count)
+        {
+            GameManager.instance.score_Count = score_Count;
+        }
+
+        best_Score_Text.text = GameManager.instance.score_Count.ToString();
+
+        GameManager.instance.starScore += star_Score_Count;
+
+        GameManager.instance.SaveGameData();
+
     }
 }

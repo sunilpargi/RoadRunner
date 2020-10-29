@@ -32,15 +32,19 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         MakeInstance();
-    }
 
-    private void Start()
-    {
         anim = player.GetComponent<Animator>();
 
         start_Effect = GameObject.FindGameObjectsWithTag(Mytag.STAR_EFFECT);
     }
-  
+
+    void Start()
+    {
+        string path = "Sprites/Player/hero" + GameManager.instance.selected_Index + "_big";
+        player_Sprite = Resources.Load<Sprite>(path);
+        player_Renderer.sprite = player_Sprite;
+    }
+
     void Update()
     {
         HandleChangeLine();
@@ -105,7 +109,7 @@ public class PlayerController : MonoBehaviour
         shadow.SetActive(false);
 
         GamePlayController.instance.moveSpeed = 0f;
-        //GamePlayController.instance.GameOver();
+        GamePlayController.instance.GameOver();
 
         SoundManager.instance.PlayDeadSound();
         SoundManager.instance.PlayGameOverClip();
@@ -194,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
             target.gameObject.SetActive(false);
             SoundManager.instance.PlayCoinSound();
-            //GameplayController.instance.UpdateStarScore();
+            GamePlayController.instance.UpdateStarScore();
         }
 
     }

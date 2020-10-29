@@ -1008,6 +1008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb3b96ce7be41540bf7589871ac8b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starScore: 0
+  score_Count: 0
+  selected_Index: 0
+  heroes: 
+  playSound: 1
 --- !u!1 &467336148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,7 +2540,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1478505553}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 467336151}
+        m_TargetAssemblyTypeName: CharaterSelect, Assembly-CSharp
+        m_MethodName: SelectHero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1478505553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3405,7 +3422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1991069310}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 467336150}
+        m_TargetAssemblyTypeName: MainmenuController, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1991069310
 MonoBehaviour:
   m_ObjectHideFlags: 0
